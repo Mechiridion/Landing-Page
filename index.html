@@ -554,12 +554,27 @@
             }
         }
         
-        // Video Modal Functions
+        // Array of video sources - add your second video path here
+        const videoSources = [
+            'assets/product-video.mov',      // First video
+            'assets/product-video-2.mov'     // Second video - replace with your actual second video path
+        ];
+        
+        let currentVideoIndex = 0;
+        
+        // Video Modal Functions with Sequential Video Playing
         function openVideoModal() {
             document.getElementById('videoModal').style.display = 'flex';
             const video = document.getElementById('productVideo');
             
-            // Force video to fit window better
+            // Reset to first video when opening modal
+            currentVideoIndex = 0;
+            loadVideo(currentVideoIndex);
+            
+            // Add event listener for when the video ends
+            video.addEventListener('ended', playNextVideo);
+            
+            // Force video to fit window better and play
             setTimeout(function() {
                 video.play();
             }, 300);
@@ -568,11 +583,53 @@
             document.body.style.overflow = 'hidden';
         }
         
+        function playNextVideo() {
+            const video = document.getElementById('productVideo');
+            
+            // Move to next video
+            currentVideoIndex++;
+            
+            // If there are more videos to play
+            if (currentVideoIndex < videoSources.length) {
+                loadVideo(currentVideoIndex);
+                video.play();
+            } else {
+                // All videos have finished, you can either:
+                // 1. Close the modal automatically
+                // closeVideoModal();
+                
+                // 2. Or loop back to the first video
+                // currentVideoIndex = 0;
+                // loadVideo(currentVideoIndex);
+                // video.play();
+                
+                // 3. Or just leave it on the last frame (current behavior)
+                console.log('All videos have finished playing');
+            }
+        }
+        
+        function loadVideo(index) {
+            const video = document.getElementById('productVideo');
+            const source = video.querySelector('source');
+            
+            // Update the video source
+            source.src = videoSources[index];
+            video.load(); // Reload the video with new source
+        }
+        
         function closeVideoModal() {
             const video = document.getElementById('productVideo');
+            
+            // Remove the event listener to prevent memory leaks
+            video.removeEventListener('ended', playNextVideo);
+            
             video.pause();
             video.currentTime = 0;
             document.getElementById('videoModal').style.display = 'none';
+            
+            // Reset to first video for next time
+            currentVideoIndex = 0;
+            loadVideo(currentVideoIndex);
             
             // Restore scrolling
             document.body.style.overflow = '';

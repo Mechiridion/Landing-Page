@@ -8,6 +8,614 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@300;400;500;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
+    <style>
+        /* Animated How It Works section styles */
+        .how-it-works-section {
+            padding: 100px 0;
+            background: transparent;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .how-it-works-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at center, rgba(255, 87, 34, 0.05) 0%, rgba(0, 0, 0, 0) 70%);
+            z-index: 0;
+        }
+
+        .how-it-works-section h2 {
+            text-align: center;
+            font-size: 48px;
+            font-weight: 700;
+            margin-bottom: 80px;
+            color: var(--text-white);
+            position: relative;
+        }
+
+        .how-it-works-section h2::after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background-color: var(--matte-orange);
+            border-radius: 2px;
+        }
+
+        .steps-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: nowrap;
+            gap: 0;
+            max-width: 1200px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        .step-box {
+            background-color: rgba(22, 22, 22, 0.6);
+            border-radius: 12px;
+            padding: 40px 30px;
+            width: 300px;
+            min-height: 250px;
+            position: relative;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            backdrop-filter: blur(5px);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .step-box:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(255, 87, 34, 0.2);
+        }
+
+        .step-number {
+            position: absolute;
+            top: -25px;
+            left: 30px;
+            width: 50px;
+            height: 50px;
+            background-color: var(--matte-orange);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            font-weight: 700;
+            color: white;
+            box-shadow: 0 5px 15px rgba(255, 87, 34, 0.5);
+            z-index: 2;
+            animation: pulse-glow 2s infinite alternate;
+        }
+
+        @keyframes pulse-glow {
+            0% { box-shadow: 0 5px 15px rgba(255, 87, 34, 0.4); }
+            100% { box-shadow: 0 5px 20px rgba(255, 87, 34, 0.7); }
+        }
+
+        .step-content h3 {
+            font-size: 24px;
+            margin-bottom: 20px;
+            margin-top: 15px;
+            color: var(--text-white);
+        }
+
+        .step-content p {
+            font-size: 16px;
+            line-height: 1.6;
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        /* Connectors between steps */
+        .step-connector {
+            width: 80px;
+            height: 4px;
+            position: relative;
+        }
+
+        .connector-line {
+            width: 100%;
+            height: 4px;
+            background-color: var(--matte-orange);
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Animated pulse dots */
+        .pulse-dot {
+            position: absolute;
+            width: 20px;
+            height: 4px;
+            background-color: rgba(255, 255, 255, 0.9);
+            border-radius: 2px;
+            animation: pulseDot 3s infinite;
+        }
+
+        .pulse-dot:nth-child(1) {
+            animation-delay: 0s;
+        }
+
+        .pulse-dot:nth-child(2) {
+            animation-delay: 1s;
+        }
+
+        .pulse-dot:nth-child(3) {
+            animation-delay: 2s;
+        }
+
+        @keyframes pulseDot {
+            0% {
+                left: -20px;
+                opacity: 0;
+            }
+            20% {
+                opacity: 1;
+            }
+            80% {
+                opacity: 1;
+            }
+            100% {
+                left: 100px;
+                opacity: 0;
+            }
+        }
+
+        /* Glow effect on hover for step boxes */
+        .step-box::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, transparent, rgba(255, 87, 34, 0.08), transparent);
+            border-radius: 12px;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            z-index: -1;
+        }
+
+        .step-box:hover::before {
+            opacity: 1;
+            animation: glowEffect 2s infinite alternate;
+        }
+
+        @keyframes glowEffect {
+            0% {
+                opacity: 0.1;
+            }
+            100% {
+                opacity: 0.4;
+            }
+        }
+
+        /* Responsive styles for How It Works section */
+        @media (max-width: 1024px) {
+            .steps-container {
+                flex-direction: column;
+                gap: 60px;
+            }
+            
+            .step-connector {
+                width: 4px;
+                height: 60px;
+                transform: rotate(90deg);
+                margin: 0;
+            }
+            
+            .step-box {
+                width: 90%;
+                max-width: 400px;
+            }
+        }
+
+        /* NEW: App Section Styles with Transparency and Animations */
+        .app-section {
+            padding: 100px 0;
+            text-align: center;
+            position: relative;
+            background: transparent !important;
+            border: none !important;
+            overflow: hidden;
+        }
+        
+        .app-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at center, rgba(255, 87, 34, 0.05) 0%, rgba(0, 0, 0, 0) 70%);
+            z-index: 0;
+            animation: pulseBg 8s infinite alternate;
+        }
+        
+        @keyframes pulseBg {
+            0% { opacity: 0.3; }
+            100% { opacity: 0.7; }
+        }
+        
+        .app-section h2 {
+            text-align: center;
+            font-size: 48px;
+            font-weight: 700;
+            margin-bottom: 40px;
+            color: var(--text-white);
+            position: relative;
+        }
+        
+        .app-section h2::after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background-color: var(--matte-orange);
+            border-radius: 2px;
+            animation: widthPulse 2s infinite alternate;
+        }
+        
+        @keyframes widthPulse {
+            0% { width: 60px; }
+            100% { width: 100px; }
+        }
+        
+        .app-section p {
+            font-size: 18px;
+            margin-bottom: 40px;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+            color: var(--accent-white);
+            position: relative;
+            z-index: 1;
+        }
+        
+        .app-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .app-button {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            background-color: rgba(22, 22, 22, 0.6) !important;
+            border: 1px solid rgba(255, 255, 255, 0.1) !important;
+            padding: 15px 30px;
+            border-radius: 12px;
+            color: var(--text-white);
+            text-decoration: none;
+            transition: all 0.3s;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            backdrop-filter: blur(5px);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .app-button::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(
+                to bottom right,
+                rgba(255, 87, 34, 0) 0%,
+                rgba(255, 87, 34, 0.1) 50%,
+                rgba(255, 87, 34, 0) 100%
+            );
+            transform: rotate(45deg);
+            animation: shimmer 3s infinite;
+            z-index: 0;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+        
+        .app-button:hover::before {
+            opacity: 1;
+        }
+        
+        @keyframes shimmer {
+            0% { transform: translateX(-100%) rotate(45deg); }
+            100% { transform: translateX(100%) rotate(45deg); }
+        }
+        
+        .app-button:hover {
+            transform: translateY(-8px) scale(1.05);
+            box-shadow: 0 20px 40px rgba(255, 87, 34, 0.3);
+            border-color: rgba(255, 87, 34, 0.3) !important;
+        }
+        
+        .app-button .icon {
+            color: var(--matte-orange);
+            font-size: 32px;
+            transition: transform 0.3s;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .app-button:hover .icon {
+            transform: scale(1.2);
+            animation: bounce 1s infinite alternate;
+        }
+        
+        @keyframes bounce {
+            0% { transform: scale(1.1); }
+            100% { transform: scale(1.3); }
+        }
+        
+        .app-button .text {
+            text-align: left;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .app-button .text span {
+            display: block;
+        }
+        
+        .app-button .text .small {
+            font-size: 12px;
+            opacity: 0.8;
+        }
+        
+        .app-button .text .big {
+            font-size: 18px;
+            font-weight: 500;
+        }
+
+        /* Tron-inspired Footer Styles */
+        .tron-footer {
+            margin: 40px auto 20px;
+            max-width: 1200px;
+            border-radius: 16px;
+            background-color: rgba(22, 22, 22, 0.6);
+            backdrop-filter: blur(8px);
+            padding: 25px 40px;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 
+                0 10px 30px rgba(0, 0, 0, 0.3),
+                0 0 40px rgba(255, 87, 34, 0.1);
+        }
+        
+        /* Tron Grid Pattern Background */
+        .tron-footer::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: 
+                linear-gradient(rgba(255, 87, 34, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 87, 34, 0.03) 1px, transparent 1px);
+            background-size: 20px 20px;
+            z-index: -1;
+        }
+        
+        /* Neon Border Effect */
+        .tron-footer::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: linear-gradient(90deg, 
+                transparent 0%, 
+                rgba(255, 87, 34, 0.1) 20%, 
+                rgba(255, 87, 34, 0.8) 50%, 
+                rgba(255, 87, 34, 0.1) 80%, 
+                transparent 100%);
+            box-shadow: 0 0 10px rgba(255, 87, 34, 0.5);
+            animation: neonPulse 3s infinite alternate;
+        }
+        
+        @keyframes neonPulse {
+            0% { opacity: 0.7; }
+            100% { opacity: 1; }
+        }
+        
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 20px;
+            position: relative;
+        }
+        
+        .footer-logo {
+            display: flex;
+            align-items: center;
+        }
+        
+        .footer-logo img {
+            height: 40px;
+            width: auto;
+            filter: drop-shadow(0 0 5px rgba(255, 87, 34, 0.5));
+        }
+        
+        .footer-nav {
+            display: flex;
+            gap: 30px;
+        }
+        
+        .footer-links {
+            display: flex;
+            gap: 20px;
+        }
+        
+        .footer-links a {
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            transition: all 0.3s;
+            position: relative;
+            padding: 3px 0;
+        }
+        
+        .footer-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background-color: var(--matte-orange);
+            transition: width 0.3s;
+            box-shadow: 0 0 5px var(--matte-orange);
+        }
+        
+        .footer-links a:hover {
+            color: var(--matte-orange);
+        }
+        
+        .footer-links a:hover::after {
+            width: 100%;
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 15px;
+        }
+        
+        .social-link {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 36px;
+            height: 36px;
+            background-color: rgba(22, 22, 22, 0.6);
+            border: 1px solid rgba(255, 87, 34, 0.3);
+            border-radius: 8px;
+            color: white;
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .social-link svg {
+            width: 18px;
+            height: 18px;
+            fill: currentColor;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .social-link::before {
+            content: "";
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            background: linear-gradient(45deg, 
+                transparent, 
+                rgba(255, 87, 34, 0.6), 
+                transparent);
+            z-index: 0;
+            transform: rotate(45deg) translateY(-100%);
+            transition: transform 0.4s;
+        }
+        
+        .social-link:hover::before {
+            transform: rotate(45deg) translateY(0);
+        }
+        
+        .social-link:hover {
+            color: var(--matte-orange);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(255, 87, 34, 0.2);
+        }
+        
+        .light-beam {
+            position: absolute;
+            height: 1px;
+            background-color: var(--matte-orange);
+            box-shadow: 0 0 10px var(--matte-orange);
+            opacity: 0.6;
+            z-index: 0;
+        }
+        
+        .beam-1 {
+            width: 80px;
+            bottom: 15px;
+            left: 10%;
+            transform: rotate(35deg);
+            animation: fadeInOut 4s infinite alternate;
+        }
+        
+        .beam-2 {
+            width: 120px;
+            top: 20px;
+            right: 15%;
+            transform: rotate(-25deg);
+            animation: fadeInOut 6s infinite alternate-reverse;
+        }
+        
+        .beam-3 {
+            width: 60px;
+            bottom: 30px;
+            right: 25%;
+            transform: rotate(15deg);
+            animation: fadeInOut 5s infinite alternate;
+        }
+        
+        @keyframes fadeInOut {
+            0% { opacity: 0.2; width: 80%; }
+            50% { opacity: 0.7; width: 100%; }
+            100% { opacity: 0.4; width: 60%; }
+        }
+        
+        .copyright {
+            margin-top: 15px;
+            color: rgba(255, 255, 255, 0.4);
+            font-size: 14px;
+            text-align: center;
+            position: relative;
+            z-index: 1;
+        }
+        
+        @media (max-width: 768px) {
+            .footer-content {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .footer-nav {
+                flex-direction: column;
+                gap: 20px;
+            }
+            
+            .footer-links {
+                justify-content: center;
+            }
+            
+            .social-links {
+                margin-top: 10px;
+                justify-content: center;
+            }
+        }
+    </style>
 </head>
 <body>
     <div class="background"></div>
@@ -88,6 +696,7 @@
                 </div>
             </section>
             
+            <!-- Enhanced App Section with Transparency and Animations -->
             <section class="app-section">
                 <h2>Download the INFOCAR App</h2>
                 <p>Our OBD Scanner works exclusively with the INFOCAR app, available for both iOS and Android devices. Download the app to unlock the full potential of your Mechiridion OBD Scanner.</p>
@@ -120,26 +729,60 @@
                 </div>
             </section>
             
-            <section class="steps-section">
+            <!-- Animated How It Works Section -->
+            <section class="how-it-works-section">
                 <h2>How It Works</h2>
                 
-                <div class="steps">
-                    <div class="step">
-                        <div class="step-number">1</div>
-                        <h3>Connect Scanner</h3>
-                        <p>Plug the Mechiridion OBD Scanner into your vehicle's OBD-II port, usually located under the dashboard near the steering column.</p>
+                <div class="steps-container">
+                    <!-- Step 1 -->
+                    <div class="step-box">
+                        <div class="step-number">
+                            <span>1</span>
+                        </div>
+                        <div class="step-content">
+                            <h3>Connect Scanner</h3>
+                            <p>Plug the Mechiridion OBD Scanner into your vehicle's OBD-II port, usually located under the dashboard near the steering column.</p>
+                        </div>
                     </div>
                     
-                    <div class="step">
-                        <div class="step-number">2</div>
-                        <h3>Download INFOCAR</h3>
-                        <p>Install the INFOCAR app on your iOS or Android device from the respective app store.</p>
+                    <!-- Animated connector 1-2 -->
+                    <div class="step-connector">
+                        <div class="connector-line">
+                            <div class="pulse-dot"></div>
+                            <div class="pulse-dot"></div>
+                            <div class="pulse-dot"></div>
+                        </div>
                     </div>
                     
-                    <div class="step">
-                        <div class="step-number">3</div>
-                        <h3>Start Diagnosing</h3>
-                        <p>Launch the app, connect to the scanner via Bluetooth, and start monitoring your vehicle's performance in real-time.</p>
+                    <!-- Step 2 -->
+                    <div class="step-box">
+                        <div class="step-number">
+                            <span>2</span>
+                        </div>
+                        <div class="step-content">
+                            <h3>Download INFOCAR</h3>
+                            <p>Install the INFOCAR app on your iOS or Android device from the respective app store.</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Animated connector 2-3 -->
+                    <div class="step-connector">
+                        <div class="connector-line">
+                            <div class="pulse-dot"></div>
+                            <div class="pulse-dot"></div>
+                            <div class="pulse-dot"></div>
+                        </div>
+                    </div>
+                    
+                    <!-- Step 3 -->
+                    <div class="step-box">
+                        <div class="step-number">
+                            <span>3</span>
+                        </div>
+                        <div class="step-content">
+                            <h3>Start Diagnosing</h3>
+                            <p>Launch the app, connect to the scanner via Bluetooth, and start monitoring your vehicle's performance in real-time.</p>
+                        </div>
                     </div>
                 </div>
             </section>
@@ -149,20 +792,46 @@
             </section>
         </main>
         
-        <footer>
+        <!-- New Tron-inspired Footer -->
+        <footer class="tron-footer">
+            <div class="light-beam beam-1"></div>
+            <div class="light-beam beam-2"></div>
+            <div class="light-beam beam-3"></div>
+            
             <div class="footer-content">
                 <div class="footer-logo">
                     <img src="assets/Mech-Logo.png" alt="Mechiridion Logo">
-                    <span>MECHIRIDION</span>
                 </div>
                 
-                <div class="footer-links">
-                    <a href="index.html">Home</a>
-                    <a href="index.html#scanner">Services</a>
-                    <a href="scanner.html">OBD Scanner</a>
-                    <a href="index.html#categories">Categories</a>
-                    <a href="index.html#contact">Contact</a>
-                    <a href="index.html#pricing">Pricing</a>
+                <div class="footer-nav">
+                    <div class="footer-links">
+                        <a href="index.html">Home</a>
+                        <a href="index.html#scanner">Services</a>
+                        <a href="scanner.html">OBD Scanner</a>
+                        <a href="index.html#categories">Categories</a>
+                        <a href="index.html#contact">Contact</a>
+                        <a href="index.html#pricing">Pricing</a>
+                    </div>
+                    
+                    <div class="social-links">
+                        <a href="#" class="social-link" aria-label="Instagram">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+                            </svg>
+                        </a>
+                        
+                        <a href="#" class="social-link" aria-label="Twitter/X">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+                            </svg>
+                        </a>
+                        
+                        <a href="#" class="social-link" aria-label="TikTok">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5 20.1a6.34 6.34 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1-.1z"/>
+                            </svg>
+                        </a>
+                    </div>
                 </div>
             </div>
             

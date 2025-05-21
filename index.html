@@ -7,714 +7,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@300;400;500;700&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            --matte-orange: #ff5722;
-            --dark-bg: #121212;
-            --card-bg: #1e1e1e;
-            --text-white: #f5f5f5;
-            --accent-white: rgba(255, 255, 255, 0.8);
-        }
-        
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Ubuntu', sans-serif;
-        }
-        
-        body {
-            background-color: var(--dark-bg);
-            color: var(--text-white);
-            overflow-x: hidden;
-            scroll-behavior: smooth;
-        }
-        
-        .background {
-            position: fixed;
-            width: 100%;
-            height: 100%;
-            z-index: -1;
-            background: linear-gradient(125deg, #000000 0%, #121212 100%);
-            overflow: hidden;
-        }
-        
-        .background::before {
-            content: '';
-            position: absolute;
-            width: 200%;
-            height: 200%;
-            top: -50%;
-            left: -50%;
-            background: radial-gradient(circle, rgba(255, 87, 34, 0.1) 0%, rgba(0, 0, 0, 0) 70%);
-            transform: rotate(45deg);
-        }
-        
-        .background::after {
-            content: '';
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            top: 0;
-            left: 0;
-            background: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPgogIDxkZWZzPgogICAgPHBhdHRlcm4gaWQ9InBhdHRlcm4iIHg9IjAiIHk9IjAiIHdpZHRoPSI0MCIgaGVpZ2h0PSI0MCIgcGF0dGVyblVuaXRzPSJ1c2VyU3BhY2VPblVzZSI+CiAgICAgIDxjaXJjbGUgY3g9IjIwIiBjeT0iMjAiIHI9IjAuNSIgZmlsbD0icmdiYSgyNTUsIDI1NSwgMjU1LCAwLjA1KSIgLz4KICAgIDwvcGF0dGVybj4KICA8L2RlZnM+CiAgPHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgZmlsbD0idXJsKCNwYXR0ZXJuKSIgLz4KPC9zdmc+');
-            opacity: 0.3;
-        }
-        
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-        
-        header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 20px 0;
-            position: relative;
-            z-index: 2;
-        }
-        
-        .logo {
-            display: flex;
-            align-items: center;
-            cursor: pointer;
-        }
-        
-        .logo img {
-            height: 32px;
-        }
-        
-        .logo-text {
-            font-size: 22px;
-            font-weight: 700;
-            margin-left: 8px;
-            color: var(--text-white);
-        }
-        
-        nav {
-            display: flex;
-            gap: 24px;
-        }
-        
-        nav a {
-            color: var(--text-white);
-            text-decoration: none;
-            font-size: 16px;
-            font-weight: 500;
-            transition: color 0.2s;
-            cursor: pointer;
-        }
-        
-        nav a:hover {
-            color: var(--matte-orange);
-        }
-        
-        .auth-buttons {
-            display: flex;
-            gap: 12px;
-            align-items: center;
-        }
-        
-        .auth-buttons button {
-            padding: 8px 16px;
-            border-radius: 6px;
-            font-weight: 500;
-            cursor: pointer;
-            transition: all 0.2s;
-        }
-        
-        .login-btn {
-            background: transparent;
-            color: var(--text-white);
-            border: none;
-        }
-        
-        .signup-btn {
-            background-color: var(--matte-orange);
-            color: var(--text-white);
-            border: none;
-        }
-        
-        .signup-btn:hover {
-            background-color: #e64a19;
-        }
-        
-        .hero {
-            padding: 60px 0;
-            text-align: center;
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .hero-content {
-            max-width: 800px;
-            margin: 0 auto;
-            position: relative;
-            z-index: 1;
-        }
-        
-        .hero h1 {
-            font-size: 64px;
-            font-weight: 700;
-            line-height: 1.1;
-            margin-bottom: 20px;
-        }
-        
-        .hero h1 span {
-            color: var(--matte-orange);
-        }
-        
-        .hero p {
-            font-size: 20px;
-            color: var(--accent-white);
-            margin-bottom: 32px;
-            font-weight: 300;
-        }
-        
-        .hero-buttons {
-            display: flex;
-            justify-content: center;
-            gap: 16px;
-            margin-bottom: 48px;
-        }
-        
-        .hero-buttons button {
-            padding: 12px 24px;
-            border-radius: 8px;
-            font-weight: 500;
-            font-size: 16px;
-            cursor: pointer;
-            transition: all 0.2s;
-        }
-        
-        .primary-btn {
-            background-color: var(--matte-orange);
-            color: var(--text-white);
-            border: none;
-        }
-        
-        .primary-btn:hover {
-            background-color: #e64a19;
-        }
-        
-        .secondary-btn {
-            background-color: rgba(255, 255, 255, 0.1);
-            color: var(--text-white);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-        
-        .secondary-btn:hover {
-            background-color: rgba(255, 255, 255, 0.15);
-        }
-        
-        .software-demo {
-            position: relative;
-            border-radius: 12px;
-            overflow: hidden;
-            box-shadow: 0 20px 80px rgba(0, 0, 0, 0.5);
-            margin: 0 auto;
-            max-width: 1000px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-        }
-        
-        .demo-header {
-            background-color: #0c0c0c;
-            padding: 12px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-        }
-        
-        .window-controls {
-            display: flex;
-            gap: 6px;
-        }
-        
-        .window-controls span {
-            width: 12px;
-            height: 12px;
-            border-radius: 50%;
-            display: block;
-        }
-        
-        .window-controls span:nth-child(1) {
-            background-color: #ff5f56;
-        }
-        
-        .window-controls span:nth-child(2) {
-            background-color: #ffbd2e;
-        }
-        
-        .window-controls span:nth-child(3) {
-            background-color: #27c93f;
-        }
-        
-        .demo-navbar {
-            display: flex;
-            gap: 16px;
-        }
-        
-        .demo-navbar span {
-            color: rgba(255, 255, 255, 0.6);
-            font-size: 12px;
-        }
-        
-        .action-buttons {
-            display: flex;
-            gap: 8px;
-        }
-        
-        .action-buttons button {
-            background-color: var(--matte-orange);
-            color: white;
-            border: none;
-            padding: 4px 12px;
-            border-radius: 4px;
-            font-size: 12px;
-            cursor: pointer;
-        }
-        
-        .demo-content {
-            background-color: #151515;
-            padding: 20px;
-            display: flex;
-            height: 500px;
-        }
-        
-        .sidebar {
-            width: 220px;
-            background-color: #0c0c0c;
-            border-radius: 8px;
-            padding: 16px;
-            margin-right: 20px;
-        }
-        
-        .sidebar-item {
-            padding: 8px 12px;
-            margin-bottom: 8px;
-            border-radius: 6px;
-            font-size: 14px;
-            color: rgba(255, 255, 255, 0.7);
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            cursor: pointer;
-        }
-        
-        .sidebar-item:hover {
-            background-color: rgba(255, 255, 255, 0.05);
-        }
-        
-        .sidebar-item.active {
-            background-color: var(--matte-orange);
-            color: white;
-        }
-        
-        .sidebar-item .icon {
-            width: 16px;
-            height: 16px;
-            background-color: currentColor;
-            mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='currentColor'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z' /%3E%3C/svg%3E");
-            mask-repeat: no-repeat;
-            mask-position: center;
-        }
-        
-        .main-content {
-            flex: 1;
-            background-color: #1a1a1a;
-            border-radius: 8px;
-            overflow: hidden;
-            position: relative;
-        }
-        
-        .car-model {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 80%;
-            height: 80%;
-            object-fit: contain;
-        }
-        
-        .overlay-controls {
-            position: absolute;
-            bottom: 20px;
-            left: 50%;
-            transform: translateX(-50%);
-            display: flex;
-            gap: 10px;
-        }
-        
-        .control-btn {
-            background-color: var(--matte-orange);
-            color: white;
-            border: none;
-            padding: 8px 16px;
-            border-radius: 6px;
-            font-size: 14px;
-            cursor: pointer;
-        }
-        
-        .search-container {
-            padding: 40px 0;
-            text-align: center;
-        }
-        
-        .categories {
-            margin: 40px auto 80px;
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 24px;
-            padding: 40px 0;
-        }
-        
-        .category-card {
-            background-color: var(--card-bg);
-            border-radius: 12px;
-            overflow: hidden;
-            transition: transform 0.3s;
-            cursor: pointer;
-            border: 1px solid rgba(255, 255, 255, 0.05);
-        }
-        
-        .category-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-        }
-        
-        .category-card img {
-            width: 100%;
-            height: 160px;
-            object-fit: cover;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-        }
-        
-        .category-content {
-            padding: 20px;
-        }
-        
-        .category-content h3 {
-            font-size: 18px;
-            margin-bottom: 8px;
-            color: var(--text-white);
-        }
-        
-        .category-content p {
-            font-size: 14px;
-            color: rgba(255, 255, 255, 0.7);
-        }
-        
-        .search-bar {
-            margin: 40px auto;
-            max-width: 600px;
-            position: relative;
-        }
-        
-        .search-bar input {
-            width: 100%;
-            padding: 16px 48px 16px 20px;
-            background-color: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 8px;
-            color: var(--text-white);
-            font-size: 16px;
-            transition: all 0.2s;
-        }
-        
-        .search-bar input:focus {
-            outline: none;
-            background-color: rgba(255, 255, 255, 0.08);
-            border-color: rgba(255, 255, 255, 0.2);
-        }
-        
-        .search-bar button {
-            position: absolute;
-            right: 12px;
-            top: 50%;
-            transform: translateY(-50%);
-            background-color: var(--matte-orange);
-            border: none;
-            width: 32px;
-            height: 32px;
-            border-radius: 6px;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        
-        .search-bar button svg {
-            width: 16px;
-            height: 16px;
-            color: white;
-        }
-        
-        .contact-section {
-            padding: 80px 0;
-            background-color: rgba(0,0,0,0.3);
-            border-top: 1px solid rgba(255,255,255,0.05);
-            text-align: center;
-        }
-        
-        .contact-section h2 {
-            margin-bottom: 40px;
-            font-size: 36px;
-        }
-        
-        .contact-form {
-            max-width: 600px;
-            margin: 0 auto;
-        }
-        
-        .form-group {
-            margin-bottom: 20px;
-            text-align: left;
-        }
-        
-        .form-group label {
-            display: block;
-            margin-bottom: 8px;
-            font-weight: 500;
-        }
-        
-        .form-group input,
-        .form-group textarea {
-            width: 100%;
-            padding: 12px;
-            background-color: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 8px;
-            color: white;
-            font-size: 16px;
-        }
-        
-        .form-group textarea {
-            min-height: 120px;
-            resize: vertical;
-        }
-        
-        .submit-btn {
-            background-color: var(--matte-orange);
-            color: white;
-            border: none;
-            padding: 12px 32px;
-            border-radius: 8px;
-            font-size: 16px;
-            cursor: pointer;
-            transition: background-color 0.2s;
-        }
-        
-        .submit-btn:hover {
-            background-color: #e64a19;
-        }
-        
-        .pricing-section {
-            padding: 80px 0;
-            text-align: center;
-        }
-        
-        .pricing-section h2 {
-            margin-bottom: 40px;
-            font-size: 36px;
-        }
-        
-        .pricing-plans {
-            display: flex;
-            justify-content: center;
-            gap: 30px;
-            flex-wrap: wrap;
-        }
-        
-        .pricing-plan {
-            background-color: var(--card-bg);
-            border-radius: 12px;
-            padding: 40px 30px;
-            width: 300px;
-            text-align: center;
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            transition: transform 0.3s, box-shadow 0.3s;
-        }
-        
-        .pricing-plan:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
-        }
-        
-        .plan-name {
-            font-size: 24px;
-            margin-bottom: 10px;
-            color: var(--text-white);
-        }
-        
-        .plan-price {
-            font-size: 48px;
-            font-weight: 700;
-            margin-bottom: 24px;
-            color: var(--matte-orange);
-        }
-        
-        .plan-price span {
-            font-size: 16px;
-            color: rgba(255, 255, 255, 0.7);
-        }
-        
-        .plan-features {
-            list-style: none;
-            margin-bottom: 30px;
-        }
-        
-        .plan-features li {
-            padding: 8px 0;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-            color: rgba(255, 255, 255, 0.8);
-        }
-        
-        .plan-btn {
-            background-color: var(--matte-orange);
-            color: white;
-            border: none;
-            padding: 10px 24px;
-            border-radius: 6px;
-            cursor: pointer;
-            transition: background-color 0.2s;
-        }
-        
-        .plan-btn:hover {
-            background-color: #e64a19;
-        }
-        
-        .featured-plan {
-            position: relative;
-            border: 1px solid var(--matte-orange);
-            transform: scale(1.05);
-        }
-        
-        .featured-plan::before {
-            content: 'POPULAR';
-            position: absolute;
-            top: -12px;
-            left: 50%;
-            transform: translateX(-50%);
-            background-color: var(--matte-orange);
-            color: white;
-            padding: 4px 12px;
-            border-radius: 12px;
-            font-size: 12px;
-            font-weight: 700;
-        }
-        
-        .featured-plan:hover {
-            transform: translateY(-10px) scale(1.05);
-        }
-        
-        footer {
-            background-color: rgba(0,0,0,0.5);
-            padding: 40px 0;
-            text-align: center;
-            border-top: 1px solid rgba(255,255,255,0.05);
-        }
-        
-        .footer-content {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 20px;
-        }
-        
-        .footer-logo {
-            display: flex;
-            align-items: center;
-        }
-        
-        .footer-logo img {
-            height: 24px;
-        }
-        
-        .footer-logo span {
-            font-size: 18px;
-            font-weight: 700;
-            margin-left: 8px;
-        }
-        
-        .footer-links {
-            display: flex;
-            gap: 20px;
-        }
-        
-        .footer-links a {
-            color: rgba(255, 255, 255, 0.7);
-            text-decoration: none;
-            transition: color 0.2s;
-        }
-        
-        .footer-links a:hover {
-            color: var(--matte-orange);
-        }
-        
-        .copyright {
-            margin-top: 20px;
-            color: rgba(255, 255, 255, 0.5);
-            font-size: 14px;
-        }
-        
-        @media (max-width: 768px) {
-            .hero h1 {
-                font-size: 48px;
-            }
-            
-            .categories {
-                grid-template-columns: repeat(2, 1fr);
-            }
-            
-            nav {
-                display: none;
-            }
-            
-            .pricing-plans {
-                flex-direction: column;
-                align-items: center;
-            }
-            
-            .featured-plan {
-                transform: scale(1);
-            }
-            
-            .featured-plan:hover {
-                transform: translateY(-10px) scale(1);
-            }
-            
-            .footer-content {
-                flex-direction: column;
-                gap: 30px;
-            }
-        }
-        
-        @media (max-width: 480px) {
-            .hero h1 {
-                font-size: 36px;
-            }
-            
-            .categories {
-                grid-template-columns: 1fr;
-            }
-            
-            .hero-buttons {
-                flex-direction: column;
-            }
-            
-            .pricing-plan {
-                width: 100%;
-            }
-        }
-    </style>
+    <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
     <div class="background"></div>
@@ -722,7 +15,7 @@
     <div class="container">
         <header id="top">
             <div class="logo" onclick="scrollToSection('top')">
-                <img src="https://via.placeholder.com/32x32/ff5722/ffffff?text=M" alt="Mechiridion Logo">
+                <img src="assets/Mech-Logo.png" alt="Mechiridion Logo">
                 <span class="logo-text">MECHIRIDION</span>
             </div>
             
@@ -747,13 +40,13 @@
                     <p>The comprehensive repair platform loved by mechanics and DIY enthusiasts alike.</p>
                     
                     <div class="hero-buttons">
-                        <button class="primary-btn" onclick="scrollToSection('scanner')">Our Scanner</button>
-                        <button class="secondary-btn" onclick="scrollToSection('categories')">
+                        <a href="scanner.html" class="primary-btn">Our Scanner</a>
+                        <a href="javascript:void(0)" onclick="openVideoModal()" class="secondary-btn">
                             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M5 3L19 12L5 21V3Z" fill="currentColor"/>
                             </svg>
                             Watch video
-                        </button>
+                        </a>
                     </div>
                 </div>
                 
@@ -813,7 +106,7 @@
                         </div>
                         
                         <div class="main-content">
-                            <img src="car-model-placeholder.png" alt="3D Car Model" class="car-model">
+                            <div id="car-svg-container"></div>
                             
                             <div class="overlay-controls">
                                 <button class="control-btn">Select a model</button>
@@ -838,7 +131,7 @@
             
             <section id="categories" class="categories">
                 <div class="category-card" onclick="scrollToSection('scanner')">
-                    <img src="https://via.placeholder.com/300x160/1a1a1a/ff5722?text=Engine" alt="Engine">
+                    <img src="assets/engine.jpg" alt="Engine">
                     <div class="category-content">
                         <h3>Engine And Powertrain</h3>
                         <p>Diagnose and troubleshoot engine and transmission issues</p>
@@ -846,7 +139,7 @@
                 </div>
                 
                 <div class="category-card" onclick="scrollToSection('scanner')">
-                    <img src="https://via.placeholder.com/300x160/1a1a1a/ff5722?text=Electrical" alt="Electrical">
+                    <img src="assets/electrical.jpg" alt="Electrical">
                     <div class="category-content">
                         <h3>Electrical System</h3>
                         <p>Solve electrical problems and diagnose sensor failures</p>
@@ -854,7 +147,7 @@
                 </div>
                 
                 <div class="category-card" onclick="scrollToSection('scanner')">
-                    <img src="https://via.placeholder.com/300x160/1a1a1a/ff5722?text=Braking" alt="Braking">
+                    <img src="assets/braking.jpg" alt="Braking">
                     <div class="category-content">
                         <h3>Braking System</h3>
                         <p>Inspect and resolve ABS, brake pad, and caliper issues</p>
@@ -862,7 +155,7 @@
                 </div>
                 
                 <div class="category-card" onclick="scrollToSection('scanner')">
-                    <img src="https://via.placeholder.com/300x160/1a1a1a/ff5722?text=Suspension" alt="Suspension">
+                    <img src="assets/suspension.jpg" alt="Suspension">
                     <div class="category-content">
                         <h3>Suspension And Steering</h3>
                         <p>Analyze suspension and steering components for wear</p>
@@ -870,7 +163,7 @@
                 </div>
                 
                 <div class="category-card" onclick="scrollToSection('scanner')">
-                    <img src="https://via.placeholder.com/300x160/1a1a1a/ff5722?text=Fuel" alt="Fuel">
+                    <img src="assets/fuel.jpg" alt="Fuel">
                     <div class="category-content">
                         <h3>Fuel System</h3>
                         <p>Identify fuel delivery and injection system problems</p>
@@ -878,7 +171,7 @@
                 </div>
                 
                 <div class="category-card" onclick="scrollToSection('scanner')">
-                    <img src="https://via.placeholder.com/300x160/1a1a1a/ff5722?text=Cooling" alt="Cooling">
+                    <img src="assets/cooling.jpg" alt="Cooling">
                     <div class="category-content">
                         <h3>Cooling System</h3>
                         <p>Diagnose overheating and coolant circulation issues</p>
@@ -953,7 +246,7 @@
         <footer>
             <div class="footer-content">
                 <div class="footer-logo">
-                    <img src="https://via.placeholder.com/24x24/ff5722/ffffff?text=M" alt="Mechiridion Logo">
+                    <img src="assets/Mech-Logo.png" alt="Mechiridion Logo">
                     <span>MECHIRIDION</span>
                 </div>
                 
@@ -973,6 +266,19 @@
         </footer>
     </div>
     
+    <!-- Video Modal -->
+    <div id="videoModal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeVideoModal()">&times;</span>
+            <div class="video-container">
+                <video id="productVideo" controls>
+                    <source src="assets/product-video.mov" type="video/quicktime">
+                    Your browser does not support the video tag.
+                </video>
+            </div>
+        </div>
+    </div>
+    
     <script>
         function scrollToSection(sectionId) {
             const section = document.getElementById(sectionId);
@@ -984,18 +290,313 @@
             }
         }
         
-        // Initialize sidebar items
+        // Video Modal Functions
+        function openVideoModal() {
+            document.getElementById('videoModal').style.display = 'flex';
+            const video = document.getElementById('productVideo');
+            
+            // Force video to fit window better
+            setTimeout(function() {
+                video.play();
+            }, 300);
+            
+            // Prevent scrolling while modal is open
+            document.body.style.overflow = 'hidden';
+        }
+        
+        function closeVideoModal() {
+            const video = document.getElementById('productVideo');
+            video.pause();
+            video.currentTime = 0;
+            document.getElementById('videoModal').style.display = 'none';
+            
+            // Restore scrolling
+            document.body.style.overflow = '';
+        }
+        
+        // Close modal if user clicks outside of the video
+        window.onclick = function(event) {
+            const modal = document.getElementById('videoModal');
+            if (event.target == modal) {
+                closeVideoModal();
+            }
+        }
+    </script>
+    
+    <!-- Include Car SVG Animation -->
+    <script id="carSvgElement" type="text/html">
+<!-- Car SVG animation to be placed in the main-content div in the software-demo section -->
+<svg width="100%" height="100%" viewBox="0 0 1000 600" preserveAspectRatio="xMidYMid meet" id="carSvg">
+  <!-- Car Body Base -->
+  <g id="car-base">
+    <path d="M200,350 C200,350 220,320 280,300 C340,280 380,280 500,250 C620,220 680,250 750,290 C820,330 830,350 830,350 L860,450 C860,450 840,470 820,470 L720,470 C720,470 710,430 680,430 C650,430 630,470 630,470 L400,470 C400,470 380,430 350,430 C320,430 300,470 300,470 L200,470 C180,470 160,450 160,430 L200,350 Z" 
+        fill="#2a2a2a" stroke="#444" stroke-width="2"/>
+    <!-- Windows -->
+    <path d="M380,280 L450,250 C450,250 560,235 600,250 C640,265 680,300 680,300 L590,300 L380,280 Z" 
+        fill="#3a3a3a" stroke="#444" stroke-width="1" />
+    <!-- Headlights -->
+    <ellipse cx="820" cy="350" rx="25" ry="15" fill="#444" />
+    <ellipse cx="210" cy="350" rx="25" ry="15" fill="#444" />
+    <!-- Wheels -->
+    <g id="wheel-left">
+      <circle cx="350" cy="450" r="50" fill="#222" stroke="#333" stroke-width="5" />
+      <circle cx="350" cy="450" r="25" fill="#444" stroke="#555" stroke-width="2" />
+      <line x1="350" y1="400" x2="350" y2="500" stroke="#333" stroke-width="2" />
+      <line x1="300" y1="450" x2="400" y2="450" stroke="#333" stroke-width="2" />
+    </g>
+    <g id="wheel-right">
+      <circle cx="680" cy="450" r="50" fill="#222" stroke="#333" stroke-width="5" />
+      <circle cx="680" cy="450" r="25" fill="#444" stroke="#555" stroke-width="2" />
+      <line x1="680" y1="400" x2="680" y2="500" stroke="#333" stroke-width="2" />
+      <line x1="630" y1="450" x2="730" y2="450" stroke="#333" stroke-width="2" />
+    </g>
+  </g>
+
+  <!-- Engine System -->
+  <g id="system-engine" class="car-system" opacity="0">
+    <path d="M220,320 C220,320 250,300 320,300 C390,300 400,350 400,350 L250,350 C250,350 220,340 220,320 Z" 
+        fill="#ff5722" stroke="#e64a19" stroke-width="2" class="system-part" />
+    <path d="M230,300 C230,300 270,290 290,290 C310,290 330,300 330,300 L330,330 L230,330 Z" 
+        fill="#ff5722" stroke="#e64a19" stroke-width="2" class="system-part" />
+    <circle cx="260" cy="310" r="10" fill="#e64a19" class="system-part" />
+    <circle cx="300" cy="310" r="10" fill="#e64a19" class="system-part" />
+    <rect x="240" y="330" width="80" height="5" fill="#e64a19" class="system-part" />
+    <text x="320" y="330" font-family="'Ubuntu', sans-serif" font-size="14" fill="#fff">Engine</text>
+  </g>
+
+  <!-- Electrical System -->
+  <g id="system-electrical" class="car-system" opacity="0">
+    <!-- Battery -->
+    <rect x="400" y="300" width="50" height="30" fill="#ff5722" stroke="#e64a19" stroke-width="2" class="system-part" />
+    <rect x="410" y="295" width="10" height="5" fill="#e64a19" class="system-part" />
+    <rect x="430" y="295" width="10" height="5" fill="#e64a19" class="system-part" />
+    <!-- Wiring harness - flowing dash lines -->
+    <path d="M450,315 C550,315 580,350 650,350 M450,315 C500,315 520,280 580,280 M450,315 C480,315 500,380 600,380" 
+        stroke="#ff5722" stroke-width="3" stroke-dasharray="5,5" class="system-part" fill="none" />
+    <!-- Control units -->
+    <rect x="580" y="270" width="30" height="20" fill="#ff5722" stroke="#e64a19" stroke-width="1" rx="2" class="system-part" />
+    <circle cx="650" cy="350" r="10" fill="#ff5722" stroke="#e64a19" stroke-width="1" class="system-part" />
+    <rect x="600" y="370" width="20" height="20" fill="#ff5722" stroke="#e64a19" stroke-width="1" rx="2" class="system-part" />
+    <text x="460" y="295" font-family="'Ubuntu', sans-serif" font-size="14" fill="#fff">Electrical System</text>
+  </g>
+
+  <!-- Braking System -->
+  <g id="system-braking" class="car-system" opacity="0">
+    <!-- Brake components -->
+    <circle cx="350" cy="450" r="60" fill="none" stroke="#ff5722" stroke-width="4" stroke-dasharray="10,4" class="system-part" />
+    <circle cx="680" cy="450" r="60" fill="none" stroke="#ff5722" stroke-width="4" stroke-dasharray="10,4" class="system-part" />
+    <!-- Brake lines -->
+    <path d="M350,390 C350,370 500,350 680,390" fill="none" stroke="#ff5722" stroke-width="3" class="system-part" />
+    <path d="M350,510 C350,530 500,540 680,510" fill="none" stroke="#ff5722" stroke-width="3" class="system-part" />
+    <!-- Brake calipers -->
+    <rect x="300" y="430" width="20" height="40" rx="5" fill="#ff5722" stroke="#e64a19" stroke-width="2" class="system-part" />
+    <rect x="380" y="430" width="20" height="40" rx="5" fill="#ff5722" stroke="#e64a19" stroke-width="2" class="system-part" />
+    <rect x="630" y="430" width="20" height="40" rx="5" fill="#ff5722" stroke="#e64a19" stroke-width="2" class="system-part" />
+    <rect x="710" y="430" width="20" height="40" rx="5" fill="#ff5722" stroke="#e64a19" stroke-width="2" class="system-part" />
+    <!-- Master cylinder -->
+    <rect x="480" y="370" width="70" height="20" rx="5" fill="#ff5722" stroke="#e64a19" stroke-width="2" class="system-part" />
+    <text x="480" y="350" font-family="'Ubuntu', sans-serif" font-size="14" fill="#fff">Braking System</text>
+  </g>
+
+  <!-- Suspension System -->
+  <g id="system-suspension" class="car-system" opacity="0">
+    <!-- Suspension components -->
+    <path d="M330,380 C350,410 370,430 350,450" fill="none" stroke="#ff5722" stroke-width="5" class="system-part" />
+    <path d="M370,380 C350,410 330,430 350,450" fill="none" stroke="#ff5722" stroke-width="5" class="system-part" />
+    <path d="M660,380 C680,410 700,430 680,450" fill="none" stroke="#ff5722" stroke-width="5" class="system-part" />
+    <path d="M700,380 C680,410 660,430 680,450" fill="none" stroke="#ff5722" stroke-width="5" class="system-part" />
+    
+    <!-- Shocks -->
+    <line x1="320" y1="370" x2="320" y2="450" stroke="#ff5722" stroke-width="3" class="system-part" />
+    <line x1="380" y1="370" x2="380" y2="450" stroke="#ff5722" stroke-width="3" class="system-part" />
+    <line x1="650" y1="370" x2="650" y2="450" stroke="#ff5722" stroke-width="3" class="system-part" />
+    <line x1="710" y1="370" x2="710" y2="450" stroke="#ff5722" stroke-width="3" class="system-part" />
+    
+    <!-- Springs -->
+    <path d="M320,370 L320,450" stroke="#e64a19" stroke-width="6" stroke-dasharray="3,6" class="system-part" />
+    <path d="M380,370 L380,450" stroke="#e64a19" stroke-width="6" stroke-dasharray="3,6" class="system-part" />
+    <path d="M650,370 L650,450" stroke="#e64a19" stroke-width="6" stroke-dasharray="3,6" class="system-part" />
+    <path d="M710,370 L710,450" stroke="#e64a19" stroke-width="6" stroke-dasharray="3,6" class="system-part" />
+    
+    <text x="400" y="380" font-family="'Ubuntu', sans-serif" font-size="14" fill="#fff">Suspension & Steering</text>
+  </g>
+
+  <!-- Fuel System -->
+  <g id="system-fuel" class="car-system" opacity="0">
+    <!-- Fuel tank -->
+    <rect x="450" y="400" width="100" height="50" rx="10" fill="#ff5722" stroke="#e64a19" stroke-width="2" class="system-part" />
+    <!-- Fuel lines -->
+    <path d="M550,420 C600,420 620,350 650,350 C680,350 700,320 700,320" fill="none" stroke="#ff5722" stroke-width="3" class="system-part" />
+    <path d="M550,430 C570,430 580,350 330,350 C300,350 280,330 280,330" fill="none" stroke="#ff5722" stroke-width="3" class="system-part" />
+    <!-- Fuel pump -->
+    <circle cx="570" cy="420" r="10" fill="#e64a19" stroke="#ff5722" stroke-width="2" class="system-part" />
+    <!-- Fuel cap -->
+    <circle cx="530" cy="400" r="8" fill="#e64a19" stroke="#ff5722" stroke-width="2" class="system-part" />
+    <text x="460" y="390" font-family="'Ubuntu', sans-serif" font-size="14" fill="#fff">Fuel System</text>
+  </g>
+
+  <!-- Cooling System -->
+  <g id="system-cooling" class="car-system" opacity="0">
+    <!-- Radiator -->
+    <rect x="230" y="270" width="50" height="40" fill="#ff5722" stroke="#e64a19" stroke-width="2" class="system-part" />
+    <!-- Cooling lines -->
+    <path d="M280,290 C350,290 370,300 370,300 C370,300 380,320 280,320 Z" fill="#ff5722" stroke="#e64a19" stroke-width="2" class="system-part" />
+    <!-- Water pump -->
+    <circle cx="330" cy="310" r="10" fill="#e64a19" stroke="#ff5722" stroke-width="2" class="system-part" />
+    <!-- Cooling fans -->
+    <path d="M240,280 L270,300 M240,300 L270,280" stroke="#e64a19" stroke-width="2" class="system-part" />
+    <text x="240" y="260" font-family="'Ubuntu', sans-serif" font-size="14" fill="#fff">Cooling System</text>
+  </g>
+
+  <!-- Exhaust System -->
+  <g id="system-exhaust" class="car-system" opacity="0">
+    <!-- Exhaust pipes -->
+    <path d="M300,350 C300,350 320,380 350,380 C400,380 450,370 600,370 C700,370 750,380 780,400 C810,420 830,450 830,450" 
+        fill="none" stroke="#ff5722" stroke-width="6" stroke-linecap="round" class="system-part" />
+    <!-- Muffler -->
+    <ellipse cx="700" cy="390" rx="50" ry="15" fill="#ff5722" stroke="#e64a19" stroke-width="2" class="system-part" />
+    <!-- Catalytic converter -->
+    <ellipse cx="500" cy="370" rx="30" ry="12" fill="#ff5722" stroke="#e64a19" stroke-width="2" class="system-part" />
+    <text x="650" y="430" font-family="'Ubuntu', sans-serif" font-size="14" fill="#fff">Exhaust System</text>
+  </g>
+
+  <!-- Body & Interior -->
+  <g id="system-body" class="car-system" opacity="0">
+    <!-- Interior outline -->
+    <path d="M300,300 C300,300 400,270 550,270 C650,270 700,300 700,300 L700,400 L300,400 Z" 
+        fill="none" stroke="#ff5722" stroke-width="2" stroke-dasharray="5,3" class="system-part" />
+    <!-- Seats -->
+    <rect x="400" y="320" width="60" height="40" rx="5" fill="#ff5722" stroke="#e64a19" stroke-width="2" class="system-part" />
+    <rect x="500" y="320" width="60" height="40" rx="5" fill="#ff5722" stroke="#e64a19" stroke-width="2" class="system-part" />
+    <!-- Dashboard -->
+    <path d="M380,300 L620,300 C620,300 630,320 620,320 L380,320 C370,320 380,300 380,300 Z" 
+        fill="#ff5722" stroke="#e64a19" stroke-width="2" class="system-part" />
+    <!-- Steering wheel -->
+    <circle cx="440" cy="310" r="15" fill="none" stroke="#e64a19" stroke-width="3" class="system-part" />
+    <text x="450" y="300" font-family="'Ubuntu', sans-serif" font-size="14" fill="#fff">Body & Interior</text>
+  </g>
+</svg>
+    </script>
+    
+    <!-- Car Animation JavaScript -->
+    <script>
+        // Car Systems Animation JavaScript
         document.addEventListener('DOMContentLoaded', function() {
+            // Get all sidebar items
             const sidebarItems = document.querySelectorAll('.sidebar-item');
+            
+            // Initialize animation
+            initCarAnimation();
+            
+            // Connect sidebar items to car systems
             sidebarItems.forEach(item => {
                 item.addEventListener('click', function() {
-                    // Remove active class from all items
+                    // Get the text of the clicked item
+                    const itemText = this.textContent.trim();
+                    
+                    // Determine which system to show based on the text
+                    let systemId = '';
+                    
+                    if (itemText.includes('Engine')) {
+                        systemId = 'system-engine';
+                    } else if (itemText.includes('Electrical')) {
+                        systemId = 'system-electrical';
+                    } else if (itemText.includes('Braking')) {
+                        systemId = 'system-braking';
+                    } else if (itemText.includes('Suspension')) {
+                        systemId = 'system-suspension';
+                    } else if (itemText.includes('Fuel')) {
+                        systemId = 'system-fuel';
+                    } else if (itemText.includes('Cooling')) {
+                        systemId = 'system-cooling';
+                    } else if (itemText.includes('Exhaust')) {
+                        systemId = 'system-exhaust';
+                    } else if (itemText.includes('Body')) {
+                        systemId = 'system-body';
+                    }
+                    
+                    // Show the selected system
+                    if (systemId) {
+                        showCarSystem(systemId);
+                    }
+                    
+                    // Remove active class from all items and add to clicked item
                     sidebarItems.forEach(i => i.classList.remove('active'));
-                    // Add active class to clicked item
                     this.classList.add('active');
                 });
             });
         });
+
+        function initCarAnimation() {
+            // Find the main-content div in the software demo section
+            const mainContent = document.querySelector('.main-content');
+            
+            // Create a container for the SVG if it doesn't exist
+            let svgContainer = mainContent.querySelector('#car-svg-container');
+            if (!svgContainer) {
+                svgContainer = document.createElement('div');
+                svgContainer.id = 'car-svg-container';
+                svgContainer.style.width = '100%';
+                svgContainer.style.height = '100%';
+                svgContainer.style.position = 'absolute';
+                svgContainer.style.top = '0';
+                svgContainer.style.left = '0';
+                svgContainer.style.display = 'flex';
+                svgContainer.style.justifyContent = 'center';
+                svgContainer.style.alignItems = 'center';
+                mainContent.appendChild(svgContainer);
+            }
+            
+            // Insert the SVG from the script template
+            const svgTemplate = document.getElementById('carSvgElement');
+            if (svgTemplate) {
+                svgContainer.innerHTML = svgTemplate.innerHTML;
+            }
+            
+            // Add CSS for car systems animation
+            const style = document.createElement('style');
+            style.textContent = `
+                .car-system {
+                    transition: opacity 0.5s ease-in-out;
+                }
+                .system-part {
+                    filter: drop-shadow(0px 0px 5px rgba(255, 87, 34, 0.7));
+                }
+                @keyframes pulse {
+                    0% { opacity: 0.8; }
+                    50% { opacity: 1; }
+                    100% { opacity: 0.8; }
+                }
+                .system-active {
+                    opacity: 1;
+                    animation: pulse 2s infinite;
+                }
+            `;
+            document.head.appendChild(style);
+            
+            // Show the engine system by default (to match the active sidebar item)
+            setTimeout(() => {
+                showCarSystem('system-engine');
+            }, 300);
+        }
+
+        function showCarSystem(systemId) {
+            // Hide all systems
+            const allSystems = document.querySelectorAll('.car-system');
+            allSystems.forEach(system => {
+                system.style.opacity = 0;
+                system.classList.remove('system-active');
+            });
+            
+            // Show the selected system
+            const selectedSystem = document.getElementById(systemId);
+            if (selectedSystem) {
+                setTimeout(() => {
+                    selectedSystem.style.opacity = 1;
+                    selectedSystem.classList.add('system-active');
+                }, 300); // Small delay for better transition effect
+            }
+        }
     </script>
 </body>
 </html>

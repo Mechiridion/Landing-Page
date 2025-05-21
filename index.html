@@ -106,8 +106,8 @@
                         </div>
                         
                         <div class="main-content">
-                            <div id="car-svg-container"></div>
-                            
+                            <div id="car-svg-container" style="width: 100%; height: 100%;"></div>
+
                             <div class="overlay-controls">
                                 <button class="control-btn">Select a model</button>
                                 <button class="control-btn">Select a variant</button>
@@ -278,7 +278,10 @@
             </div>
         </div>
     </div>
-    
+    <!-- Add these before your existing script tags -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/loaders/GLTFLoader.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.min.js"></script>
     <script>
         function scrollToSection(sectionId) {
             const section = document.getElementById(sectionId);
@@ -598,5 +601,6 @@
             }
         }
     </script>
+    <script src="js/car-viewer.js"></script>
 </body>
 </html>
